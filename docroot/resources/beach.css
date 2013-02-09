@@ -5,16 +5,12 @@ body {
     font-size: 13px;
     color: #011D67;
     line-height: 1.9em;
-    background: #06c url(../img/pattern-blue.png);
+    background: #06c;
 }
 
 a {
     color: #E85600;
     text-decoration: none;
-}
-h1 small {
-    color: #E85600;
-    text-shadow: 1px 1px 0px #fff;
 }
 
 h1 {
@@ -30,6 +26,10 @@ h1 {
     color: #011D67;
     text-shadow: 1px 1px 0px #fff;
     font-weight: normal;
+}
+h1 small {
+    color: #E85600;
+    text-shadow: 1px 1px 0px #fff;
 }
 aside header {
     font-size: 0.62em;
@@ -101,6 +101,25 @@ img {
 .fract16 { width: 14.66%; }
 .fract56 { width: 81.33%; }
 
+@media (max-width: 479px) {
+    [class*="fract"] {
+        margin: 0;
+        float: none;
+    }
+    .fract11 { width: 100%; }
+    .fract12 { width: 100%; }
+    .fract13 { width: 100%; }
+    .fract23 { width: 100%; }
+    .fract14 { width: 100%; }
+    .fract34 { width: 100%; }
+    .fract15 { width: 100%; }
+    .fract25 { width: 100%; }
+    .fract35 { width: 100%; }
+    .fract45 { width: 100%; }
+    .fract16 { width: 100%; }
+    .fract56 { width: 100%; }
+  
+}
 
 
 
@@ -120,16 +139,16 @@ body > section.divider:after {
     line-height: 1.3em;
 }
 body > .porta-c-dx {
-    background: #e3f1ff url('../img/porta-c-dx.png') right bottom no-repeat;
+    background: #e3f1ff;
 }
 body > .porta-c-sx {
-    background: #e3f1ff url('../img/porta-c-sx.png') left bottom no-repeat;
+    background: #e3f1ff;
 }
 body > .porta-n-dx {
-    background: #e3f1ff url('../img/porta-n-dx.png') right bottom no-repeat;
+    background: #e3f1ff;
 }
 body > .porta-n-sx {
-    background: #e3f1ff url('../img/porta-n-sx.png') left bottom no-repeat;
+    background: #e3f1ff;
 }
 .inner {
     max-width: 980px;
@@ -299,13 +318,47 @@ form label {
     margin: 5px 0;
 }
 form input {
-    border: 1px solid #dbdbdb;
+    border: 5px solid #011D67;
+    color: #011D67;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
     padding: 7px 10px;
-    width: 95%;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+form textarea {
+    border: 5px solid #011D67;
+    color: #011D67;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    padding: 7px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+form input:focus,
+form textarea:focus {
+    border-color: #E85600;
+    outline: none;
 }
 
 
+.buttons {
+    text-align: right;
+}
+
 .btn {
+    font-family: 'Oswald', sans-serif;
     font-size: 1.2em;
     font-weight: bold;
     border: 5px solid #011D67;
@@ -321,9 +374,11 @@ form input {
     transition: all 0.3s ease-in-out;
     background: white;
 }
+.btn:focus,
 .btn:hover {
     border-color: #E85600;
     text-decoration: none;
+    outline: none;
 }
 
 .shadow {
@@ -511,25 +566,22 @@ cite:after {
 }
 
 
-.super {
-    font-family: 'Oswald', sans-serif;
-    padding: 20px 0;
-    font-size: 4.5em;
-    text-shadow: 1px 1px 0px #fff;
-    line-height: 1em;
-    margin: 0;
-}
 
 
-
-.fb_iframe_widget {
+/*.fb_iframe_widget {
     height: 340px;
     overflow: hidden;
 }
 .fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
-  width: 100% !important;
+    width: 100% !important;
 }
+*/
 
+.herospace .fb-like {
+    position: absolute;
+    bottom: 21px;
+    right: 0px;
+}
 
 .herospace {
     height: 500px;
@@ -540,6 +592,7 @@ cite:after {
     border-bottom: 1px solid #011D67;
     /*box-shadow: inset 0 10px 18px -10px #333, inset 0 -10px 18px -10px #333;*/
 }
+.tetris,
 .herospace h1 {
     font-size: 4.4em;
     color: white;
@@ -548,22 +601,29 @@ cite:after {
     line-height: 0.95em;
     margin: 0;
 }
+.tetris small,
 .herospace h1 small {
     line-height: 80%;
+    color: #E85600;
+    text-shadow: 1px 1px 0px #fff;
 }
 .herospace h2 {
     font-size: 3.4em;
 }
+.tetris,
 .herospace article {
     padding: 20px 0;
     text-align: left;
-    font-size: 120%;
-    margin: 20px 0 0 40px;
+    margin: 20px;
     float: left;
     background: #E85600;
     border-left: 0 none;
     position: relative;
 }
+.herospace article {
+    margin: 20px 40px;
+}
+.tetris:before,
 .herospace article:before {
     content: '';
     position: absolute;
@@ -574,6 +634,7 @@ cite:after {
     height: 100%;
     box-sizing: border-box;
 }
+.tetris:after,
 .herospace article:after {
     content: '';
     position: absolute;
@@ -584,6 +645,53 @@ cite:after {
     height: 100%;
     box-sizing: border-box;
 }
+
+.addthis_toolbox {
+    margin-top: 16px;
+}
+
+
+.highlight blockquote a {
+    color: white;
+}
+
+
+/* the overlayed element */
+.overlay {
+ 
+    /* must be initially hidden */
+    display:none;
+ 
+    /* place overlay on top of other elements */
+    z-index:10000;
+ 
+    /* styling */
+    background-color:#333;
+ 
+    width:640px;
+    min-height:480px;
+
+    border: 5px solid #000;
+ 
+    /* CSS3 styling for latest browsers */
+    -moz-box-shadow:0 0 90px 5px #000;
+    -webkit-box-shadow: 0 0 90px #000;
+}
+ 
+/* close button positioned on upper right corner */
+.overlay .close {
+    background-image:url(close.png);
+    position:absolute;
+    right:-15px;
+    top:-15px;
+    cursor:pointer;
+    height:35px;
+    width:35px;
+}
+.overlay iframe {
+    vertical-align: bottom;
+}
+
 
 @media (max-width: 979px) {
     .herospace {
@@ -626,6 +734,20 @@ cite:after {
     html body > nav .inner {
         padding-left: 0;
         text-align: center;
+    }
+    h1 {
+        font-size: 2.4em;
+        line-height: 1.2em;
+    }
+    h1 small {
+        white-space: nowrap;
+    }
+    blockquote {
+        font-size: 1.6em;
+    }
+    h2 {
+        font-size: 1.8em;
+        line-height: 1.2em;
     }
 }
 
