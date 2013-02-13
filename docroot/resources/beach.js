@@ -12,7 +12,7 @@ function loadBeachStats(anno) {
     var squadre = 0;
     for (var s in dati_beach[anno]['squadre']) {
         squadre += parseInt(dati_beach[anno]['squadre'][s], 10);
-    };
+    }
     var squadre_width = squadre / dati_beach_fondo_scala['squadre'] * 100;
     $('.beach_stats #squadre').html(squadre).css({'width':squadre_width+'%'});
     var campi = dati_beach[anno]['campi'];
@@ -32,12 +32,12 @@ function loadYear(anno) {
     $('.beach_scrollable [rel="' + anno + '"]').addClass('active');
     $('.beach_stats h2 span').text(anno);
     currentYear = $('.beach_scrollable .active');
-    if (currentYear.next().length == 0) {
+    if (currentYear.next().length === 0) {
         $('.beach_stats .next').css('visibility', 'hidden');
     } else {
         $('.beach_stats .next').css('visibility', 'visible');
     }
-    if (currentYear.prev().length == 0) {
+    if (currentYear.prev().length === 0) {
         $('.beach_stats .prev').css('visibility', 'hidden');
     } else {
         $('.beach_stats .prev').css('visibility', 'visible');
@@ -56,6 +56,9 @@ function loadYear(anno) {
     }
 
 }
+
+
+
 
 
 (function($){
@@ -79,3 +82,157 @@ function loadYear(anno) {
     });
 
 })(jQuery);
+
+
+
+function addMarker(map, point, image, title, infoWindowContent, zIndex) {
+    zIndex = zIndex || 1;
+    var marker = new google.maps.Marker({
+        map: map,
+        position: point,
+        draggable: false,
+        icon: image,
+        title: title,
+        zIndex: zIndex
+    });
+    if (infoWindowContent !== undefined) {
+        var infowindow = new google.maps.InfoWindow({
+            content: infoWindowContent,
+            maxWidth: 300
+        });
+        google.maps.event.addListener(marker, 'open', function() {
+            infowindow.open(map, marker);
+        });
+    }
+
+    return marker;
+}
+
+var places = [
+    // {'type': 'main', 'lat': 44.088522, 'lon': 12.536774, 'name': 'Piazza'},
+    // {'type': 'market', 'lat': 44.088559, 'lon': 12.536345, 'name': 'Market'},
+    // {'type': 'hotel', 'lat': 44.089641, 'lon': 12.535956, 'name': 'Hotel Roma Spiaggia'},
+    // {'type': 'hotel', 'lat': 44.089063, 'lon': 12.536869, 'name': 'Hotel Suprem'},
+    // {'type': 'hotel', 'lat': 44.086744, 'lon': 12.53913, 'name': 'Albergo Verdemare'},
+    {'type': 'beach', 'lat': 44.088140, 'lon': 12.53893, 'name': 'Playa Tamarindo'}
+];
+var markers = {
+    'hotel': new google.maps.MarkerImage(
+        '/resources/ico_home.png',
+        new google.maps.Size(32, 32),
+        new google.maps.Point(0,0),
+        new google.maps.Point(16, 26),
+        new google.maps.Size(32, 32)
+    ),
+    'market': new google.maps.MarkerImage(
+        '/resources/ico_shop.png',
+        new google.maps.Size(32, 32),
+        new google.maps.Point(0,0),
+        new google.maps.Point(16, 26),
+        new google.maps.Size(32, 32)
+    ),
+    'main': new google.maps.MarkerImage(
+        '/resources/ico_star.png',
+        new google.maps.Size(32, 32),
+        new google.maps.Point(0,0),
+        new google.maps.Point(16, 26),
+        new google.maps.Size(32, 32)
+    ),
+    'beach': new google.maps.MarkerImage(
+        '/resources/ico_sun.png',
+        new google.maps.Size(32, 32),
+        new google.maps.Point(0,0),
+        new google.maps.Point(16, 26),
+        new google.maps.Size(32, 32)
+    )
+};
+
+function load() {
+    var options = {
+        scrollwheel: false,
+        zoom: 15,
+        center: new google.maps.LatLng(44.089341, 12.53646),
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        mapTypeControl: true,
+        navigationControl: true
+    };
+    map = new google.maps.Map(document.getElementById("map"), options);
+    var point,
+        points = new google.maps.LatLngBounds();
+
+    
+    for (var i = places.length - 1; i >= 0; i--) {
+        
+        point = new google.maps.LatLng(places[i]['lat'],places[i]['lon']);
+        points.extend(point);
+        var newMark = addMarker(
+            map,
+            point,
+            markers[places[i]['type']],
+            places[i]['name'],
+            '<div>' + places[i]['name'] + '</div>',
+            100
+        );
+
+        var listEl = $('<li><a href="#">' + places[i]['name'] + '</a></li>');
+        listEl.data('marker', newMark);
+        listEl.find('a').click(function(){
+            var newMarkinner = $(this).parent().data('marker');
+            google.maps.event.trigger(newMarkinner, 'open');
+            return false;
+        });
+        $('.places[rel="' + places[i]['type'] + '"]').append(listEl);
+
+    }
+
+    // map.fitBounds(points);
+}
+
+
+
+
+$(document).ready(function(){
+    load();
+
+    // if the function argument is given to overlay,
+    // it is assumed to be the onBeforeLoad event listener
+    $("a.play[rel]").overlay({
+        mask: '#000',
+        onBeforeLoad: function(e) {
+            var wrap = this.getOverlay().find(".contentWrap");
+            wrap.html('<iframe width="640" height="480" src="/video/?v=' + $(e.srcElement).attr('data-video') + '" frameborder="0"></iframe>');
+        },
+        onClose: function() {
+            var wrap = this.getOverlay().find(".contentWrap");
+            wrap.empty();
+        }
+    });
+
+    $('[name]').focus(function(){
+        $(this).removeClass('error');
+    });
+
+    $('#joinstaff .submit').click(function(){
+        var form = $('#joinstaff');
+        var error = false;
+
+        form.find('[required]').each(function(){
+            if($(this).val() === '') { error = true; $(this).addClass('error'); }
+        });
+
+        if(!error) {
+            $.ajax({
+                url: '/send_mail.php',
+                data: form.serialize(),
+                type: 'post',
+                success: function(data) {
+                    if(data === '1') {
+                        form.find('.submit').text('Thank you!');
+                    }
+                }
+            });
+        }
+        return false;
+    });
+
+});

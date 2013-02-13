@@ -340,7 +340,7 @@ form textarea {
     padding: 7px 10px;
     width: 100%;
     box-sizing: border-box;
-    height: 100px;
+    height: 121px;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -349,6 +349,11 @@ form textarea {
 form input:focus,
 form textarea:focus {
     border-color: #E85600;
+    outline: none;
+}
+form input.error,
+form textarea.error {
+    border-color: #ff0000;
     outline: none;
 }
 
@@ -579,7 +584,7 @@ cite:after {
 
 .herospace .fb-like {
     position: absolute;
-    bottom: 21px;
+    bottom: 18px;
     right: 0px;
 }
 
@@ -612,7 +617,7 @@ cite:after {
 }
 .tetris,
 .herospace article {
-    padding: 20px 0;
+    padding: 20px 15px 20px 0;
     text-align: left;
     margin: 20px;
     float: left;
@@ -651,8 +656,10 @@ cite:after {
 }
 
 
+.highlight h2,
 .highlight blockquote a {
     color: white;
+    text-shadow: 0 0 0 transparent;
 }
 
 
