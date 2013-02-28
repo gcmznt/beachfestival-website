@@ -325,6 +325,7 @@ form input {
     border-radius: 25px;
     padding: 7px 10px;
     width: 100%;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
@@ -339,6 +340,7 @@ form textarea {
     border-radius: 25px;
     padding: 7px 10px;
     width: 100%;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
     height: 121px;
     -webkit-transition: all 0.3s ease-in-out;
@@ -464,6 +466,7 @@ cite:after {
     position: relative;
     padding-left: 10px;
     padding-right: 10px;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
     font-family: 'Oswald', sans-serif;
     -webkit-transition: all 0.5s ease-in-out;
@@ -479,6 +482,7 @@ cite:after {
     top: 0;
     left: 0px;
     height: 100%;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 .beach_stats .isto:after {
@@ -489,6 +493,7 @@ cite:after {
     top: 0;
     right: 0px;
     height: 100%;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 .beach_stats .nav {
@@ -637,6 +642,7 @@ cite:after {
     top: 0;
     left: -20px;
     height: 100%;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 .tetris:after,
@@ -648,6 +654,7 @@ cite:after {
     top: 0;
     right: -20px;
     height: 100%;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 

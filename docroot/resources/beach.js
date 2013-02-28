@@ -200,7 +200,8 @@ $(document).ready(function(){
         mask: '#000',
         onBeforeLoad: function(e) {
             var wrap = this.getOverlay().find(".contentWrap");
-            wrap.html('<iframe width="640" height="480" src="/video/?v=' + $(e.srcElement).attr('data-video') + '" frameborder="0"></iframe>');
+            var target = e.target || e.srcElement;
+            wrap.html('<iframe width="640" height="480" src="/video/?v=' + $(target).attr('data-video') + '" frameborder="0"></iframe>');
         },
         onClose: function() {
             var wrap = this.getOverlay().find(".contentWrap");
