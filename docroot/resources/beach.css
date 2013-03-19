@@ -37,7 +37,7 @@ aside header {
 h2 {
     margin: 0.3em 0 0.3em;
     font-size: 2.2em;
-    line-height: 1.1em;
+    line-height: 1.3em;
     color: #011D67;
     text-shadow: 1px 1px 0px #fff;
     font-weight: normal;
@@ -620,6 +620,10 @@ cite:after {
 .herospace h2 {
     font-size: 3.4em;
 }
+.herospace a {
+    color: white;
+    text-decoration: underline;
+}
 .tetris,
 .herospace article {
     padding: 20px 15px 20px 0;
@@ -674,6 +678,18 @@ cite:after {
 .highlight blockquote a {
     color: white;
     text-shadow: 0 0 0 transparent;
+}
+
+.docs {
+    list-style: none;
+    margin: 70px 0 0;
+    padding: 0;
+}
+.docs li {
+    text-align: right;
+    background: url(./pdf.png) right center no-repeat;
+    height: 32px;
+    padding-right: 40px;
 }
 
 
